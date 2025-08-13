@@ -1,0 +1,19 @@
+<div *ngIf="loading">Loading...</div>
+
+<ul *ngIf="!loading">
+  <li *ngFor="let user of paginatedUsers">
+    <span (click)="goToUser(user.id)" style="cursor: pointer; text-decoration: underline;">
+      {{ user.name }} — {{ user.email }}
+    </span>
+
+    <button (click)="editUser(user.id)">Edit</button>
+
+    <button (click)="deleteUser(user.id)">Delete</button>
+  </li>
+</ul>
+
+<div *ngIf="!loading">
+  <button (click)="prevPage" [disabled]="currentPage===1">Prev</button>
+  <span>Page {{ currentPage }} / {{totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage===totalPages">Next</button>
+</div>
